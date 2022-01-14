@@ -1,0 +1,22 @@
+[tool.poetry]
+name = "djrest"
+version = "0.1.0"
+description = ""
+authors = ["omid9h <omid9h@gmail.com>"]
+
+[tool.poetry.dependencies]
+python = "^3.8"
+attrs = "^21.4.0"
+Django = "^4.0.1"
+djangorestframework = "^3.13.1"
+django-filter = "^21.1"
+django-environ-2 = "^2.3.0"
+
+[tool.poetry.dev-dependencies]
+pytest = "^5.2"
+autopep8 = "^1.6.0"
+flake8 = "^4.0.1"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"

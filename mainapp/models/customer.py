@@ -1,5 +1,3 @@
-import email
-from pyexpat import model
 from django.db import models
 from django.utils.translation import gettext_lazy as gt_l
 from common.models import BaseModel
@@ -20,3 +18,6 @@ class Customer(BaseModel):
         blank=False,
         null=False
     )
+
+    def __str__(self):
+        return f'{self.name} - {self.email}'

@@ -1,3 +1,4 @@
+import inject
 from django.apps import AppConfig
 
 

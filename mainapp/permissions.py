@@ -1,5 +1,5 @@
 from enum import Enum
 
 
-class ColleaguePermissions(Enum):
-    ADMIN = "colleague.admin"
+class CustomerPermissions(Enum):
+    ADMIN = "customer.admin"

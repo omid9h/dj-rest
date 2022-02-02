@@ -14,7 +14,6 @@ from mainapp.services.customer import CustomerService
 class CustomerList(BaseAPIView):
     """returns a list of customers"""
 
-    authentication_classes = (TokenAuthentication,)
     permission_classes = (
         IsAuthenticated,
         partial(CheckIfUserHasPermission, [CustomerPermissions.ADMIN.value]),

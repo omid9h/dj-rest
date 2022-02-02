@@ -1,10 +1,4 @@
-from django_filters import (
-    FilterSet,
-    NumberFilter,
-    DateFromToRangeFilter,
-    ModelMultipleChoiceFilter,
-    CharFilter,
-)
+from django_filters import FilterSet
 
 from mainapp.models.customer import Customer
 

@@ -138,7 +138,7 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 AUTH_USER_MODEL = "common.User"
 
 REST_FRAMEWORK = {
-    "EXCEPTION_HANDLER": "common.exception_handlers.drf_default_with_modifications_exception_handler",
+    "EXCEPTION_HANDLER": "common.exception_handlers.unified_exception_handler",
     "DEFAULT_AUTHENTICATION_CLASSES": [
         "rest_framework.authentication.TokenAuthentication"
     ],

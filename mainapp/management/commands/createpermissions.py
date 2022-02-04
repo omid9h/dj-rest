@@ -1,6 +1,5 @@
-from typing import Optional
-from black import Any
-from django.core.management.base import BaseCommand, CommandError, CommandParser
+from typing import Optional, Any
+from django.core.management.base import BaseCommand, CommandParser
 
 from mainapp.permissions import MainAppPermissions, create_permissions
 

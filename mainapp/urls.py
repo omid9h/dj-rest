@@ -2,7 +2,7 @@ from django.urls import path
 from mainapp.apis.customers import CustomerList
 from mainapp.apis.token import CreateToken
 
-app_name = "core"
+app_name = "mainapp"
 
 urlpatterns = [
     path("token/", CreateToken.as_view(), name="token"),

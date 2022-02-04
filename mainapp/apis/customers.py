@@ -1,12 +1,11 @@
 from functools import partial
 import inject
-from rest_framework.authentication import TokenAuthentication
 from common.permissions import CheckIfUserHasPermission
 from common.paginations import get_paginated_response, LimitOffsetPagination
 from rest_framework.permissions import IsAuthenticated
 from common.views import BaseAPIView
 from mainapp.filters import CustomerFilter
-from mainapp.permissions import CustomerPermissions
+from mainapp.permissions import MainAppPermissions
 from mainapp.serializers.customers import CustomerListSerializer
 from mainapp.services.customer import CustomerService
 
@@ -16,7 +15,10 @@ class CustomerList(BaseAPIView):
 
     permission_classes = (
         IsAuthenticated,
-        partial(CheckIfUserHasPermission, [CustomerPermissions.ADMIN.value]),
+        partial(
+            CheckIfUserHasPermission,
+            [MainAppPermissions.get_fullname(MainAppPermissions.CUSTOMER_ADMIN)],
+        ),
     )
     service = inject.attr(CustomerService)
     filterset_class = CustomerFilter

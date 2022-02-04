@@ -30,7 +30,9 @@ class PermissionsDict(TypedDict):
     permission: Permission
 
 
-def create_permissions(mainapp_permissions: List[Tuple[str, str]]) -> PermissionsDict:
+def create_permissions(
+    mainapp_permissions: List[Tuple[str, str]], fake: bool = False
+) -> PermissionsDict:
     """
     Create permissions for the app
     and returns a dict with the permissions created
@@ -42,11 +44,12 @@ def create_permissions(mainapp_permissions: List[Tuple[str, str]]) -> Permission
         if not Permission.objects.filter(
             codename=codename, content_type=content_type
         ).exists():
-            permission = Permission.objects.create(
-                codename=codename,
-                name=name,
-                content_type=content_type,
-            )
+            if not fake:
+                permission = Permission.objects.create(
+                    codename=codename,
+                    name=name,
+                    content_type=content_type,
+                )
             permissions_dict[codename] = permission
 
     return permissions_dict

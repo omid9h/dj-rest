@@ -18,7 +18,7 @@ class MainAppPermissions(TextChoices):
 
     @staticmethod
     def get_fullname(permission: MainAppPermissions) -> str:
-        return f"{app_name}.{permission.value[0]}"
+        return f"{app_name}.{permission.value}"
 
 
 class PermissionsDict(TypedDict):

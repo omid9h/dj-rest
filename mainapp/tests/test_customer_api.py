@@ -19,10 +19,14 @@ class CustomerAPITest(APITestCase):
         # create permissions and assign to user
         permissions_dict = create_permissions(MainAppPermissions.choices)
         self.user.user_permissions.add(
-            permissions_dict.get(MainAppPermissions.ADMIN.value)
+            permissions_dict.get(MainAppPermissions.CUSTOMER_ADMIN.value)
         )
         # check if user really has the permissions
-        self.assertTrue(self.user.has_perms(("common.customer_admin",)))
+        self.assertTrue(
+            self.user.has_perm(
+                MainAppPermissions.get_fullname(MainAppPermissions.CUSTOMER_ADMIN)
+            )
+        )
 
     def test_get_customer_list_success(self):
         """
@@ -31,4 +35,4 @@ class CustomerAPITest(APITestCase):
         self.client.force_authenticate(user=self.user)
         response = self.client.get(CUSTOMER_LIST_URL, format="json")
         self.assertEqual(response.status_code, status.HTTP_200_OK)
-        self.assertIn("token", response.data)
+        self.assertIn("results", response.data)

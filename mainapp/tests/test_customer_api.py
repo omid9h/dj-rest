@@ -12,6 +12,8 @@ TEST_USER_DATA = {"username": "testuser", "password": "testpassword"}
 
 
 class CustomerAPITest(APITestCase):
+    fixtures = ["customers.json"]
+
     def setUp(self) -> None:
         self.client = APIClient()
         self.user = get_user_model().objects.create_user(**TEST_USER_DATA)
@@ -35,4 +37,4 @@ class CustomerAPITest(APITestCase):
         self.client.force_authenticate(user=self.user)
         response = self.client.get(CUSTOMER_LIST_URL, format="json")
         self.assertEqual(response.status_code, status.HTTP_200_OK)
-        self.assertIn("results", response.data)
+        self.assertEqual(2, len(response.data["results"]))

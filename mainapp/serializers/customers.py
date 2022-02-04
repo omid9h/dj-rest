@@ -9,3 +9,11 @@ class CustomerListSerializer(serializers.ModelSerializer):
     class Meta:
         model = Customer
         fields = "__all__"
+
+
+class CustomerCreateSerializer(serializers.ModelSerializer):
+    """customer create serializer it doesn't need to handle avatar"""
+
+    class Meta:
+        model = Customer
+        fields = ("name", "email")

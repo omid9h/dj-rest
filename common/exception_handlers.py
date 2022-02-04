@@ -34,7 +34,7 @@ def unified_exception_handler(exc, ctx):
     if response is None:
         if isinstance(exc, ApplicationError):
             data = {"message": exc.message, "extra": exc.extra}
-            return Response(data, status=400)
+            return Response(data, status=exc.status)
 
         return response
 

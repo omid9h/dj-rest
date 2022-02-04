@@ -17,3 +17,14 @@ class CustomerCreateSerializer(serializers.ModelSerializer):
     class Meta:
         model = Customer
         fields = ("name", "email")
+
+
+class CustomerUploadAvatarSerializer(serializers.ModelSerializer):
+    """customer upload avatar serializer"""
+
+    customer_id = serializers.IntegerField(required=True, allow_null=False)
+    avatar = serializers.ImageField(required=True, allow_null=False)
+
+    class Meta:
+        model = Customer
+        fields = ("customer_id", "avatar")

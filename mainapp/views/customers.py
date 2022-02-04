@@ -11,6 +11,7 @@ from mainapp.permissions import MainAppPermissions
 from mainapp.serializers.customers import (
     CustomerCreateSerializer,
     CustomerListSerializer,
+    CustomerUploadAvatarSerializer,
 )
 from mainapp.services.customer import CustomerService
 
@@ -58,5 +59,33 @@ class CustomerCreate(BaseAPIView):
 
         return Response(
             data={"name": instance.name, "email": instance.email},
+            status=status.HTTP_201_CREATED,
+        )
+
+
+class CustomerUploadAvatar(BaseAPIView):
+    """upload avatar for a customer via id"""
+
+    permission_classes = (
+        IsAuthenticated,
+        partial(
+            CheckIfUserHasPermission,
+            [MainAppPermissions.get_fullname(MainAppPermissions.CUSTOMER_ADMIN)],
+        ),
+    )
+    service = inject.attr(CustomerService)
+
+    def post(self, request):
+        serializer = CustomerUploadAvatarSerializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+
+        instance = self.service.upload_avatar(serializer)
+
+        return Response(
+            data={
+                "name": instance.name,
+                "email": instance.email,
+                "avatar": instance.avatar.url,
+            },
             status=status.HTTP_201_CREATED,
         )

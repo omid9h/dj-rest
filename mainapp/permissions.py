@@ -50,7 +50,3 @@ def create_permissions(mainapp_permissions: List[Tuple[str, str]]) -> Permission
             permissions_dict[codename] = permission
 
     return permissions_dict
-
-
-if __name__ == "__main__":
-    _ = create_permissions(MainAppPermissions.choices)

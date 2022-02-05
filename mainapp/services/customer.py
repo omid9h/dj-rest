@@ -21,7 +21,7 @@ class CustomerService(BaseService):
         return Customer.objects.create(**serializer.validated_data)
 
     def upload_avatar(self, serializer: CustomerUploadAvatarSerializer) -> Customer:
-        """upload avatar for a customer via id"""
+        """upload avatar for a customer via id and deletes previous file if existed"""
         try:
             customer = Customer.objects.get(id=serializer.validated_data["customer_id"])
         except Customer.DoesNotExist:

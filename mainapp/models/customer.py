@@ -18,7 +18,7 @@ class Customer(BaseModel):
 
     name = models.CharField(gt_l("Name"), max_length=200, blank=False, null=False)
     email = models.EmailField(gt_l("Email"), blank=False, null=False, unique=True)
-    avatar = models.FileField(
+    avatar = models.ImageField(
         gt_l("Avatar"),
         upload_to=generate_uuid_for_author_avatar,
         blank=True,

@@ -145,3 +145,10 @@ REST_FRAMEWORK = {
         "rest_framework.authentication.TokenAuthentication"
     ],
 }
+
+CUSTOMER_AVATAR_ALLOWED_EX = [
+    ".png",
+    ".jpeg",
+    ".jpg",
+]
+CUSTOMER_AVATAR_MAX_SIZE = 1 * 1024 * 1024

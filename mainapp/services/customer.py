@@ -1,4 +1,5 @@
 from django.db.models.query import QuerySet
+from django.utils.translation import gettext_lazy as gt_l
 from common.services import BaseService
 from mainapp.models.customer import Customer
 from mainapp.serializers.customers import (
@@ -23,7 +24,7 @@ class CustomerService(BaseService):
         try:
             customer = Customer.objects.get(id=serializer.validated_data["customer_id"])
         except Customer.DoesNotExist:
-            raise ValueError("Customer does not exist")
+            raise ValueError(gt_l("Customer does not exist"))
         customer.avatar = serializer.validated_data["avatar"]
-        customer.save()
+        customer.full_clean_and_save()
         return customer
